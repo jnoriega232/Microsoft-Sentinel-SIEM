@@ -1,15 +1,15 @@
 # Microsoft Sentinel (SIEM)
 
-## Objectives for the next 8 Labs that will create our Logging and Monitoring System.
+## Objectives for the next 8 Labs that will be configuring our security incident event management system.
 
 - World Attach Maps Constructions
 - Analytics, Alerting, and Incident Generation
 - Attack Traffic Generation
 - Run Insecure Environment for 24 hours and Capture Analytics
 - Incident 1 - Brute Force Success (Windows) | Working Incidents and Incident Response
-- Incident 2 - Possible Privilege Escalating | Incident Response
-- Incident 3 - Brute Force Success (Linux) | MS Sentinel working Incident Response
-- Incident 4 - Possible Malware Outbreak | Incident Response
+- Incident 2 - Possible Privilege Escalating | Working Incidents and Incident Response
+- Incident 3 - Brute Force Success (Linux) | Working Incidents and Incident Response
+- Incident 4 - Possible Malware Outbreak | Working Incidents and Incident Response
 
 ### Environments and Technologies Used:
 
@@ -29,19 +29,22 @@
 
 </summary>
 
-Reminder: Check your Subscription’s Cost Analysis
+
+**Reminder: Check your Subscription’s Cost Analysis**
 
 ### Actions and Observations<b>
 
-- We are going to create 4 different workbooks in Sentinel that show different types of malicious traffic from around the world, targeting our resources.
+- In Sentinel, we will develop four distinct workbooks showcasing diverse forms of malicious traffic originating from various global locations, all directed at our resources.
 
-- We will use pre-built JSON maps to reduce the number of errors/questions but will explain the process.
+- To streamline the process and minimize errors and inquiries, we will utilize pre-built JSON maps. However, we will still provide a comprehensive explanation of the entire process during the labs.
 
 --- 
 
-> In Microsoft Sentinel | Workbooks, we will add a new workbook in order to create our map. JSON Files - Remember, Sentinel uses our Log Analytics Workspace where we ingested the logs.
+> Within Microsoft Sentinel | Workbooks, we will introduce a new workbook with the aim of constructing our map. It's important to note that Sentinel utilizes our Log Analytics Workspace, where we have ingested the relevant logs as part of the process.
 
-![vivaldi_kLOHZRFPhj](https://user-images.githubusercontent.com/109401839/235279747-01e3bf0c-428d-4b71-b6f8-9e9dc99bae8d.png)
+<p align="center">
+<img src="https://i.imgur.com/gjdNQ3d.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
 - Remove the pre-included reports. 
 - Add Query
