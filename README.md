@@ -73,54 +73,60 @@
 <img src="https://i.imgur.com/acp1GEx.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
-> Next, we will create a graph for [MS SQL Authentication Fail](https://github.com/fnabeel/Cloud-SOC-Project-Directory/blob/main/Sentinel-Maps(JSON)/mssql-auth-fail.json)
+> Subsequently, we shall generate a chart illustrating instances of [MS SQL Authentication Fail](https://github.com/joshmadakor1/Cyber-Course/blob/main/Sentinel-Maps(JSON)/mssql-auth-fail.json)
 
-![vivaldi_laXpbNeo86](https://user-images.githubusercontent.com/109401839/235286153-e23a0f2e-3b96-498b-a557-6d70f82e31c6.png)
+<p align="center">
+<img src="https://i.imgur.com/qwD55SO.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> Now we will repeat it for the subsequent maps by entering the KQL code. 
+> Let's proceed by reiterating the process for the following maps, utilizing the KQL code entry.
 
-- [NSG Malicious Allowed Firewall In](https://github.com/fnabeel/Cloud-SOC-Project-Directory/blob/main/Sentinel-Maps(JSON)/nsg-malicious-allowed-in.json)
+- [NSG Malicious Allowed In](https://github.com/joshmadakor1/Cyber-Course/blob/main/Sentinel-Maps(JSON)/nsg-malicious-allowed-in.json)
 
-![vivaldi_No4emgWydH](https://user-images.githubusercontent.com/109401839/235286714-73d14971-e942-479b-aa36-04c083dc86d5.png)
+<p align="center">
+<img src="https://i.imgur.com/BUhROQX.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- [Windows RDP & SMB Authentication Failures](https://github.com/fnabeel/Cloud-SOC-Project-Directory/blob/main/Sentinel-Maps(JSON)/windows-rdp-auth-fail.json)
+- [Windows RDP & SMB Authentication Failures](https://github.com/joshmadakor1/Cyber-Course/blob/main/Sentinel-Maps(JSON)/windows-rdp-auth-fail.json)
 
-![vivaldi_hMnU9a0ydS](https://user-images.githubusercontent.com/109401839/235286919-0ae35ece-b7c4-436b-a581-71c92169fb6b.png)
+<p align="center">
+<img src="https://i.imgur.com/uYY6Lgb.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> We can edit and change the timeframe to see where and what attacks happened at a certain time. I will do 30 minutes as an example: 
+> We have the flexibility to modify and adjust the timeframe to examine the specific locations and nature of attacks that occurred within a particular time period. As an illustration, I will set the timeframe to 30 minutes:
 
-![vivaldi_OyzflFZq3q](https://user-images.githubusercontent.com/109401839/235287139-9b47bb91-4efe-4b37-a498-6fd9d3fadd99.png)
+<p align="center">
+<img src="https://i.imgur.com/TeH4n5i.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> You should have 4 custom-made workbooks like this:
+> You should possess four tailor-made workbooks appearing as such:
 
-![vivaldi_Ay5xt00GJN](https://user-images.githubusercontent.com/109401839/235287326-0fbd8e95-6d31-4032-bed2-112d4b8daac1.png)
+<p align="center">
+<img src="https://i.imgur.com/nWqabDs.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> In subsequent labs, we will create our own attacks at add to these maps. For example, say I create a VM in Malaysia and attack the home base VM, a dot should be added to our graphs depending on our attack method. 
+> During future labs, we will have the opportunity to generate our own attacks and incorporate them into these maps. For instance, if we create a virtual machine in Asia and proceed to attack the home base VM, a data point will be appended to the graphs based on the method of attack employed. 
 <div>
 
 ### Troubleshooting: 
 
-> If it’s been 24 hours since you created the resources being tracked on this map and you don’t see traffic to them, make sure of the following:
-First, generate traffic on your own to see if any logs show up
+> If it has been 24 hours since the creation of the tracked resources on this map, and you are not observing any traffic to them, it is essential to verify the following:
 
-> Ensure both VMs are on
-
-> Ensure Microsoft Defender for Cloud and the Data Collection Rules are configured correctly to collect logs from the VMs (from the section: Logging and Monitoring: Enable MDC and Configure Log Collection for Virtual Machines)
-
-> Ensure Logging is correctly configured for MS SQL Server (from the section: Azure Intro: Creating our Subscription and First Resources)
-
-> If NSG Flow Logs are empty, ensure they are configured correctly (from the section: Logging and Monitoring: Enable MDC and Configure Log Collection for Virtual Machines)
-
-> Alternatively, you can skip ahead to the “Azure Sentinel: Attack Traffic Generation” section to generate some traffic, but we need to make sure logging is configured correctly and showing up before that will work.
+1. Confirm if any logs appear by generating traffic manually.
+2. Ensure that both virtual machines (VMs) are powered on.
+3. Verify that Microsoft Defender for Cloud and the Data Collection Rules are accurately configured to collect logs from the VMs. Refer to the "Logging and Monitoring: Enable MDC and Configure Log Collection for Virtual Machines" section for guidance.
+4. Ensure that logging is appropriately configured for MS SQL Server as described in the "Azure Intro: Creating our Subscription and First Resources" section.
+5. If the NSG (Network Security Group) Flow Logs are empty, double-check their configuration based on the instructions provided in the "Logging and Monitoring: Enable MDC and Configure Log Collection for Virtual Machines" section.
+6. Alternatively, you can proceed to the "Azure Sentinel: Attack Traffic Generation" section to generate some traffic. However, it is crucial to confirm that logging is correctly configured and visible before attempting this step.
 
 <div> 
 
-### Analytics, Alerting, and Incident Generation
 <details close>
 
 ---
 
 </summary>
+### Analytics, Alerting, and Incident Generation
 
 - In this lab, we will be working on Analytics, Alerting, and Incident Generation.
 
