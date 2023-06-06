@@ -291,29 +291,21 @@ AuditLogs
 
 ### Attack Traffic Generation
 
-#### Attacker Mode (pretend you are an attacker), perhaps a world-renowned Blackhat Hacker, let us cosplay this lab:
+- In the spirit of assuming the role of an attacker, let's immerse ourselves in the lab by adopting the persona of a world-renowned black hat hacker. To simulate this scenario, we will initiate the generation of attack traffic intentionally, with the intention of triggering alerts and incident generation. This hands-on experience will allow us to gain deeper insights into the detection and response capabilities of the system.
 
-- First, let us generate some attack traffic to trigger alerts & incident generation, which the Internet (Thank you) has already done since the writing of the last lab. 
+To proceed with the lab activities, follow these steps:
 
-![vivaldi_BAtjUMJqrd](https://user-images.githubusercontent.com/109401839/235329080-bd59d747-8ef9-4947-8d91-5bf6d80dbf79.png)
+1. Log into the "attack-vm" that was set up in our previous labs.
+2. Open PowerShell as an administrator and install the Az module if it hasn't been installed already.
+3. Optionally, download SQL Server Management Studio (SSMS) from the previous lab materials.
+4. Download and install Visual Studio Code, which is a mandatory tool for this lab.
+5. Run the PowerShell command "Install-Module Az" and select "Yes to All" when prompted to install the module and any dependencies.
 
-> 73 Open Incidents. 2 High Alerts, oh boy. Let us make it 74.
-
-- Log into “attack-vm” from our previous labs. 
-
-- Open PowerShell as an Admin and install the Az Module if you haven’t already
-
-- Download SSMS, Previous Lab (Optional)
-
-- Download Visual Studio Code (Mandatory)
-
-- Run PS Command ```Install-Module Az```
-
-> "Yes to All "
+By completing these steps, you will have the necessary tools and environment set up to generate the desired attack traffic and proceed with the lab exercises.
 
 ![mstsc_au4u5GMQEb](https://user-images.githubusercontent.com/109401839/235329774-464dbb88-f6f9-4e2c-bd1e-a058f73a8fa1.png)
 
-- Download the “Attack-Scripts” PowerShell Scripts and put the folder on your desktop
+- Download the ["Attack-Scripts"](https://github.com/joshmadakor1/Cyber-Course/tree/main/Attack-Scripts) PowerShell scripts and save the folder on your desktop. This will provide convenient access to the scripts during the lab activities.
 
 ![mstsc_sDIJGG4fvK](https://user-images.githubusercontent.com/109401839/235329916-3f6f7f56-ba74-4fb1-bad9-af575f687056.png)
 
