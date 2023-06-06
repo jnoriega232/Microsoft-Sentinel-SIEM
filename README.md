@@ -184,21 +184,21 @@ By implementing these configurations, we can enhance the alert information with 
 
 > Suppose an attacker with the IP address  launches an attack on our network. In such a scenario, we will receive an initial alert. However, Azure Sentinel will track and correlate subsequent actions associated with that IP address, mapping them to additional alerts. This capability allows for a comprehensive view of the attacker's activities and helps identify any related threats or malicious actions. 
 
-<p align="center">
+ <p align="center">
 <img src="https://i.imgur.com/J65Xk3u.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p
+</p>
 <p align="center">
 <img src="https://i.imgur.com/PC3RDMc.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p
-
+</p>
+	
 > Our rule is now prepared for action, validated, and ready to be created. Once created, we should be able to observe any incidents it generates. It's worth noting that almost immediately after the rule's creation, an incident was generated, highlighting its effectiveness and swift response. 
 
-<p align="center">
+ <p align="center">
 <img src="https://i.imgur.com/Qod6yDw.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p
+</p>
 <p align="center">
 <img src="https://i.imgur.com/kZ0rP3d.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p
+</p>
 
 > Located at the bottom left, we can click on "Investigate" to access a visually appealing infographic that provides a comprehensive overview of the attack on the host. This infographic offers a clear and concise representation of the attack, aiding in our understanding and analysis of the incident.
 
