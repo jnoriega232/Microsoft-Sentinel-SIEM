@@ -129,13 +129,13 @@
 
 ### Analytics, Alerting, and Incident Generation
 
-- In this lab, we will be working on Analytics, Alerting, and Incident Generation.
+- This lab will focus on Analytics, Alerting, and Incident Generation. Our primary focus will be on these areas throughout the lab.
 
-- We are going to manually go to add the rules, and then trigger the alerts. We will dissect the alert and really understand what is happening. 
+- We will manually proceed to add the rules and subsequently trigger the alerts. Our objective is to thoroughly analyze and comprehend the alerts by dissecting them, gaining a deep understanding of the underlying events and actions taking place. 
 
 ![image](https://user-images.githubusercontent.com/109401839/235291419-36c75299-c9a9-4b64-a51c-f4b10ce43164.png)
 
-> First will be a brute force attempt by a Windows machine. 
+> We will commence with a Windows machine performing a brute force attempt as our initial scenario.
 
 ``` 
 SecurityEvent
@@ -145,82 +145,92 @@ SecurityEvent
 | where FailureCount >= 10
 ```
 
-> So we enter this Query under our Log Analytic workspace. Run it. It will show the EventID of 4625 in the given timeframe you selected. In this case, 60 minutes. Then the next like will be our categories and show us the Failure count. Was it all the same attacks or 10 instances of the same IP, EventID and Activity trying to attack? That's what the failure count does. 
+> Let's input the following query into our Log Analytics workspace and execute it. The query will display the EventID 4625 occurrences within the specified timeframe, which in this case is 60 minutes. Following that, we will examine the categories and observe the failure count. This count will help us determine whether there were multiple instances of the same attack, or if there were 10 separate instances involving the same IP, EventID, and activity attempting the attack. The failure count provides this valuable insight.
 
-> So we do not want to create an alert based on a user making a mistake a few times, but over ten times is a little suspicious and we can create an alert based on that. 
+> While we don't want to trigger an alert every time a user makes a few mistakes, if a certain user fails more than ten times, it becomes quite suspicious. In such cases, we can generate an alert to flag this activity as potentially malicious or suspicious.
 
-![vivaldi_hQThPXrMWs](https://user-images.githubusercontent.com/109401839/235291881-b7fe654d-cdeb-4cc3-91c5-95119ab87169.png)
+<p align="center">
+<img src="https://i.imgur.com/I883WLN.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> Feel free to use ChatGPT to have a more in-depth explanation if the one above was insufficient. 
+> Now we will proceed to add a query rule that mirrors the previous KQL query. 
 
-![analytics query](https://user-images.githubusercontent.com/109401839/235292182-1ddd325e-a980-4422-99e5-02b6f35a3985.PNG)
+<p align="center">
+<img src="https://i.imgur.com/Sdmlb0o.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> We will add a query rule now, that is the same as the previous KQL query. 
+- Regarding tactics and techniques, we will specifically choose "Credential Access" and "Brute Force" as our selections.
+- Within the "Set rule logic" section, we will paste the query for the brute force attempt and carefully examine the query results. 
 
-- Tactics and Techniques:
-Credential Access > Brute Force
-Enter it in and run it again: 
+<p align="center">
+<img src="https://i.imgur.com/ZxrEGLb.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-![mqFhzU2BOQ](https://user-images.githubusercontent.com/109401839/235292423-4695e167-f043-4680-af60-02da62454464.png)
+In the "Alert enrichment" section, specifically under "Entity Mapping," we will configure the following:
 
-> In Alert enrichment > Entity Mapping 
+1. Set up IP Entity:
+- Entity Type: Address
+- Field Name: AttackerIP
 
-> Set up IP Entity | Address | AttackerIP
+2. Add a new entity:
+- Set up Host:
+  - Entity Type: Hostname
+  - Field Name: DestinationHostName
+By implementing these configurations, we can enhance the alert information with relevant entities such as IP addresses and hostnames. 
 
-> Add new entity:
+<p align="center">
+<img src="https://i.imgur.com/lg2RUlr.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> Set up Host | Hostname | DestinationHostName 
+> Suppose an attacker with the IP address  launches an attack on our network. In such a scenario, we will receive an initial alert. However, Azure Sentinel will track and correlate subsequent actions associated with that IP address, mapping them to additional alerts. This capability allows for a comprehensive view of the attacker's activities and helps identify any related threats or malicious actions. 
 
-![vivaldi_G4GbbxRRLc](https://user-images.githubusercontent.com/109401839/235292538-96a1b891-dbf7-4466-8234-bf9eb3aa1dfb.png)
+<p align="center">
+<img src="https://i.imgur.com/J65Xk3u.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
+<p align="center">
+<img src="https://i.imgur.com/PC3RDMc.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> So say that an attacker with an IP address 1.1.1.1 attacks our network, we will get an alert.. however, Sentinel will track that IP Address and correlate that addresses further action and map it to other alerts. 
+> Our rule is now prepared for action, validated, and ready to be created. Once created, we should be able to observe any incidents it generates. It's worth noting that almost immediately after the rule's creation, an incident was generated, highlighting its effectiveness and swift response. 
 
-![vivaldi_qZYMU18mjY](https://user-images.githubusercontent.com/109401839/235292695-ed06b0e7-18c4-4dd4-8f33-44199cee9674.png)
+<p align="center">
+<img src="https://i.imgur.com/Qod6yDw.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
+<p align="center">
+<img src="https://i.imgur.com/kZ0rP3d.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-![vivaldi_5FJZt75Ouo](https://user-images.githubusercontent.com/109401839/235292727-848a05fb-234b-4a61-9d11-9ce4b35af5c6.png)
+> Located at the bottom left, we can click on "Investigate" to access a visually appealing infographic that provides a comprehensive overview of the attack on the host. This infographic offers a clear and concise representation of the attack, aiding in our understanding and analysis of the incident.
 
-> Our rule is ready to roll ~ validate & create. 
+<p align="center">
+<img src="https://i.imgur.com/lStgMAF.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> We should see any incidents that it creates.
+- Now, let's proceed to delete the test incident alert and the test alert. We will then import a set of authentic queries to work with, enabling us to analyze real-world scenarios and enhance our understanding of the system.  
 
-> And almost immediately we got an incident! 
+> If you encountered any issues during this step and the query did not yield any incidents, you have an alternative option. You can remote into your VM intentionally and deliberately fail the login attempt ten times. By doing so, you will generate the desired incident and proceed with the subsequent steps of the lab successfully.
 
-![vivaldi_NgGrQCTZd8](https://user-images.githubusercontent.com/109401839/235292787-85b9164a-c584-4e35-b013-527551daae27.png)
-
-![4MDWsCNOfs](https://user-images.githubusercontent.com/109401839/235292805-0fac1e01-6461-471b-98e6-c98ead18fdbe.png)
-
-
-> On the bottom left, we can click "Investigation"  and it will show us a nice infographic of the attack on the host. 
-
-![FZIXPOncAT](https://user-images.githubusercontent.com/109401839/235293224-ad6cf8a4-3069-42b0-b83b-a20adf271e6d.png)
-
-- Now, we can delete that test incident alert and the test alert, we are going to import a bunch of the real queries.  
-
-> If this portion did not work for you, as the query did not result in any incidents. You can remote into your VM and purposely fail the login attempt 10x in order to generate the incident! 
-
-- Now download the query rule list to make life easier! 
+- To simplify the process, you can now download the query rule list, which will facilitate your workflow and make your tasks more efficient.
 
 ---
 
-[Sentinel Analytics Rules](https://github.com/fnabeel/Cloud-SOC-Project-Directory/blob/main/Sentinel-Analytics-Rules/Sentinel-Analytics-Rules(KQL%20Alert%20Queries).json)
+[Sentinel Analytics Rules](https://github.com/joshmadakor1/Cyber-Course/blob/main/Sentinel-Analytics-Rules/Sentinel-Analytics-Rules(KQL%20Alert%20Queries).json)
 
 ---
 
-> After importing the rules, we already have 4 incidents generated. Nothing like work. 
+> Upon importing the rules, we have already witnessed the generation of three incidents. This serves as a testament to the effectiveness and productivity of our work.
 
-![vivaldi_AhVZHFFOyF](https://user-images.githubusercontent.com/109401839/235294286-eead3162-d19f-475f-a07b-aedd23433dec.png)
+<p align="center">
+<img src="https://i.imgur.com/EJvKXa4.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- Here are the active rules imported: 
+- The following are the imported active rules:
 
-![vivaldi_0qjWA3CiOA](https://user-images.githubusercontent.com/109401839/235294313-140f164c-e698-4425-9925-b238cf73b4ca.png)
+<p align="center">
+<img src="https://i.imgur.com/6n3msm8.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- Play around and learn each part.
-
-> For example CUSTOM: Possible Privilege Escalation (Global Admin Role Assignment)
-
-> Under Set Rule Logic we can see the Rule Query. 
-
-- We can break down this query: 
+> Feel free to explore and familiarize yourself with each component. For instance, let's take a look at "CUSTOM: Possible Privilege Escalation (Global Admin Role Assignment)" rule. Under the "Set Rule Logic" section, we can examine the rule query and break it down into its components for better understanding.
 
 ```
 AuditLogs
@@ -232,21 +242,21 @@ AuditLogs
 
 - Here is a breakdown of each line:
 
-> AuditLogs: This is the name of the table being queried. It likely contains logs of actions taken within a Microsoft Azure environment.
+> "AuditLogs" represents the name of the table being queried, which typically stores logs pertaining to various actions performed within a Microsoft Azure environment.
 
 ``` | where OperationName == "Add a member to role" and Result == "success": ```
 
-> This line filters the results to only show entries where the operation name is "Add a member to the role" and the result was "success". This is likely used to narrow down the results to only show successful attempts to add a user to a role.
+> This particular line in the query is designed to refine the results by filtering for entries where the operation name is "Add a member to the role" and the result is recorded as "success". This criterion helps narrow down the outcomes to exclusively display instances where users were successfully added to a role.
 
 ``` | where TargetResources[0].modifiedProperties[1].newValue == '"Company Administrator"' and TargetResources[0].type == "User": ``` 
 
-> This line further filters the results to only show entries where the modified property at index 1 of the first TargetResource (a resource involved in the operation) is equal to the string "Company Administrator" and the type of the first TargetResource is "User". This is likely used to only show successful attempts to add a user to the "Company Administrator" role.
+> This line of the query serves as an additional filter to exclusively display entries where the modified property, located at index 1 of the first TargetResource (a resource involved in the operation), matches the string "Company Administrator". Furthermore, it ensures that the type of the first TargetResource is specifically identified as "User". This filtering condition is most likely employed to present successful attempts of adding a user to the "Company Administrator" role exclusively.
 
 ``` | project TimeGenerated, OperationName, AssignedRole = TargetResources[0].modifiedProperties[1].newValue, InitiatorId = InitiatedBy.user.id, InitiatorUpn = InitiatedBy.user.userPrincipalName, TargetAccountId = TargetResources[0].id, TargetAccountUpn = TargetResources[0].userPrincipalName, InitiatorIpAddress = InitiatedBy.user.ipAddress, Status = Result: ``` 
 
-> This line projects (i.e., selects) specific columns from the filtered results and renames them for readability. 
+> This line in the query performs a projection operation by selecting specific columns from the filtered results. Additionally, it assigns them new names for improved readability and clarity. 
 
-> The selected columns include the time the log was generated (TimeGenerated), the operation name (OperationName), the assigned role (AssignedRole, which is the value of the modified property at index 1 of the first TargetResource), the ID of the user who initiated the operation (InitiatorId), the user principal name of the user who initiated the operation (InitiatorUpn), the ID of the target account (TargetAccountId, which is the ID of the first TargetResource), the user principal name of the target account (TargetAccountUpn, which is the user principal name of the first TargetResource), the IP address of the user who initiated the operation (InitiatorIpAddress, which is the IP address of the user who initiated the operation), and the status of the operation (Status, which is the result of the operation).
+> The selected columns in this query encompass various crucial attributes. These include the timestamp of log generation (TimeGenerated), the name of the operation (OperationName), the assigned role (AssignedRole), which corresponds to the modified property at index 1 of the first TargetResource, the ID of the user who initiated the operation (InitiatorId), the user principal name of the initiating user (InitiatorUpn), the ID of the target account (TargetAccountId) corresponding to the first TargetResource, the user principal name of the target account (TargetAccountUpn) linked to the first TargetResource, the IP address of the initiating user (InitiatorIpAddress), and the operation status (Status), which signifies the outcome of the operation. These columns have been meticulously selected and renamed for enhanced readability and comprehension.
 
 - Let us see what happened while you were reading this and I was typing this out. 
 
