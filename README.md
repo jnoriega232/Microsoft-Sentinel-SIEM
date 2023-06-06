@@ -307,62 +307,83 @@ By completing these steps, you will have the necessary tools and environment set
 
 - Download the ["Attack-Scripts"](https://github.com/joshmadakor1/Cyber-Course/tree/main/Attack-Scripts) PowerShell scripts and save the folder on your desktop. This will provide convenient access to the scripts during the lab activities.
 
-![mstsc_sDIJGG4fvK](https://user-images.githubusercontent.com/109401839/235329916-3f6f7f56-ba74-4fb1-bad9-af575f687056.png)
+<p align="center">
+<img src="https://i.imgur.com/mz1FXq1.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- Open the folder in VS Code
+- Launch Visual Studio Code and navigate to the folder where you saved the "Attack-Scripts" PowerShell scripts. Open the folder in Visual Studio Code to begin working with the scripts and performing the necessary actions during the lab.
 
-![mstsc_9oaG0rg5iC](https://user-images.githubusercontent.com/109401839/235329942-9306092d-fd87-4d5b-ab5d-0a21c03fa9a9.png)
+<p align="center">
+<img src="https://i.imgur.com/W928lFG.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
- > Trust the authors, you are the author. Maybe... 
+> Note: While it is possible to perform the actions carried out by these scripts manually, it is beneficial to gain experience using scripts as they can enhance efficiency and versatility. If you find yourself uncertain about the purpose of each line in the script, feel free to copy and paste it into ChatGPT and request an explanation for each line at a specific age group. This will allow you to dissect and thoroughly understand the script, enabling further comprehension. Remember, knowledge builds over time, so take it step by step at your own pace.
 
-| Notice: You can do what these scripts do manually, however, it is good to get some experience using scripts to be more efficient with time and versatile. If you are unsure what each line in the script does, feel free to copy and paste it into ChatGPT. Then, request it to explain each line at XYZ age group so you can dissect, marinate that knowledge and then be able to comprehend further. All in due time, right? 
+> When using Visual Studio Code (VSC), you might encounter a prompt to install the PowerShell extension. Please proceed with installing the extension, as it will enhance your PowerShell scripting experience within VSC.
 
-> VSC may ask you to install an extension for PowerShell, go ahead and install it. Now...
+- Execute each of the following scripts one by one, carefully observing the outcomes reflected in the Log Analytics Workspace. Additionally, pay attention to the incident creation in Azure Sentinel. This will provide valuable insights into the effects of running these scripts and help you understand how they impact both the log analytics and incident detection components of the system.
 
-- Run each of the following scripts, observing the results in Log Analytics Workspace AND Sentinel Incident Creation:
+- Proceed to run the script named "AAD-Brute-Force-Success-Simulator.ps1." This script simulates a successful brute force attack against Azure Active Directory (AAD). Alternatively, you can manually attempt to log into the Azure portal to mimic the same scenario. By executing this script or performing the login attempts, you will observe the corresponding results in the system.
 
-- AAD-Brute-Force-Success-Simulator.ps1
-(this can be done manually by trying to log into the portal)
-
-Let us break down the main function for this: 
+Now let's analyze the different components of the script to gain a deeper understanding of its functionality. By dissecting the script, we can examine each component and comprehend how they work together to simulate a successful brute force attack.
 
 Line 1: ```$tenantId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" ```
 
-> # Your Tenant ID, you can find on the AAD Blade in the Azure Portal...
+> To locate your Tenant ID, navigate to the Azure Active Directory (AAD) Blade in the Azure Portal. You will be able to find your Tenant ID displayed in this section.
 
 Line 2: ``` $username = "attacker@[your user name].onmicrosoft.com" ```
 
-> # Some Username that exists in your AAD Tenant.. in my case that is "attacker@fnabeelpm.onmicrosoft.com"
+> Please provide a valid username that exists in your Azure Active Directory (AAD) Tenant. For example, in my case, the username would be "attacker@jnoriega232gmail.onmicrosoft.com". Use the appropriate username from your AAD Tenant when running the script.
 
 Line 3: ``` $correct_password = "LabTest12345" ``` 
 
-> # Enter the correct password for the above user... If you cannot remember your password, you can reset it in your browser's incognito mode and sign on to Azure AD.
+> Please enter the correct password for the specified user mentioned above. If you cannot recall the password, you can reset it by following these steps:
+
+1. Open your web browser in incognito mode.
+2. Sign in to Azure Active Directory (AAD) using the user's account.
+3. Follow the password reset process provided by Azure AD to set a new password.
+Once you have reset the password and obtained the new one, enter it when prompted while running the script.
 
 Line 4: ``` $wrong_password = "___WRONG PASSWORD___" ``` 
 
-> # This is used to generate auth failures...
+> To simulate authentication failures, the script will deliberately use an incorrect password during the login attempts. This will trigger authentication failure events and help illustrate the impact of incorrect credentials on the system.
 
 Line 5: ``` $max_attempts = 11  ``` 
 
-> # This is the number of times to fail the login before succeeding. 
+> This parameter represents the number of consecutive login failures required before a successful login is simulated. 
 
-> So, we will let this run and it will create a loop for 11x failed login attempts, and then 1 successful login attempt, which will create an incident alert. 
+> During the execution of the script, it will iterate through a loop, simulating 11 consecutive failed login attempts followed by 1 successful login attempt. This sequence will trigger an incident alert, indicating a potential security breach. 
 
-![mstsc_O5tMxYk2aJ](https://user-images.githubusercontent.com/109401839/235330515-667d07f2-929d-48d7-9aa5-314e9a491d13.png)
+<p align="center">
+<img src="https://i.imgur.com/7p7qyZQ.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
 > We can now go to our Log Analytics and view logs. 
-Enter the Query 
+Enter the query: 
 
 ```
-SigninLogs
-| order by TimeGenerated desc
+// Failed AAD logon
+let FailedLogons = SigninLogs
+| where Status.failureReason == "Invalid username or password or Invalid on-premise username or password."
+| where TimeGenerated > ago(1h)
+| project TimeGenerated, Status = Status.failureReason, UserPrincipalName, UserId, UserDisplayName, AppDisplayName, AttackerIP = IPAddress, IPAddressFromResourceProvider, City = LocationDetails.city, State = LocationDetails.state, Country = LocationDetails.country, Latitude = LocationDetails.geoCoordinates.latitude, Longitude = LocationDetails.geoCoordinates.longitude
+| summarize FailureCount = count() by AttackerIP, UserPrincipalName;
+let SuccessfulLogons = SigninLogs
+| where Status.errorCode == 0 
+| where TimeGenerated > ago(1h)
+| project TimeGenerated, Status = Status.errorCode, UserPrincipalName, UserId, UserDisplayName, AppDisplayName, AttackerIP = IPAddress, IPAddressFromResourceProvider, City = LocationDetails.city, State = LocationDetails.state, Country = LocationDetails.country, Latitude = LocationDetails.geoCoordinates.latitude, Longitude = LocationDetails.geoCoordinates.longitude
+| summarize SuccessCount = count() by AuthenticationSuccessTime = TimeGenerated, AttackerIP, UserPrincipalName, UserId, UserDisplayName;
+let BruteForceSuccesses = SuccessfulLogons
+| join kind = inner FailedLogons on AttackerIP, UserPrincipalName;
+BruteForceSuccesses
+| project AttackerIP, TargetAccount = UserPrincipalName, UserId, FailureCount, SuccessCount, AuthenticationSuccessTime
 ```
 
-> This will show us the script attempts. It makes take a moment to update, but this is what it will look like! 
+> Executing this query will generate results that indicate a successful brute force attack in Azure Active Directory (AAD). Please allow some time for the results to populate, as they depend on the execution of the script. Be patient while waiting for the query results to display the outcomes of the script execution.
 
-![vivaldi_vGrHhhyVGj](https://user-images.githubusercontent.com/109401839/235330674-81586064-bce1-494a-907f-61e8721ace29.png)
-
-![lgo](https://user-images.githubusercontent.com/109401839/235330713-a8f42e91-8aef-43d2-a987-0539c660ef3c.PNG)
+<p align="center">
+<img src="https://i.imgur.com/HvksGSp.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
 - Key-Vault-Secret-Reader.ps1
 (this can be done manually by observing Key Vault Secrets in Azure Portal)
