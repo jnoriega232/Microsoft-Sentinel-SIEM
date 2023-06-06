@@ -258,35 +258,38 @@ AuditLogs
 
 > The selected columns in this query encompass various crucial attributes. These include the timestamp of log generation (TimeGenerated), the name of the operation (OperationName), the assigned role (AssignedRole), which corresponds to the modified property at index 1 of the first TargetResource, the ID of the user who initiated the operation (InitiatorId), the user principal name of the initiating user (InitiatorUpn), the ID of the target account (TargetAccountId) corresponding to the first TargetResource, the user principal name of the target account (TargetAccountUpn) linked to the first TargetResource, the IP address of the initiating user (InitiatorIpAddress), and the operation status (Status), which signifies the outcome of the operation. These columns have been meticulously selected and renamed for enhanced readability and comprehension.
 
-- Let us see what happened while you were reading this and I was typing this out. 
+- Let's now explore the events that unfolded while you were reading my responses and I was typing them out.
 
-![Frq11TIXzC](https://user-images.githubusercontent.com/109401839/235294920-a287141b-00b4-4005-9c3d-4be26dffd13d.png)
+<p align="center">
+<img src="https://i.imgur.com/KFrBEEP.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> We got a brute force attempt on MS SQL Server.
-Similar incidents are notified at the bottom. 
+> Another brute force attempt was made on our Windows machine.
+ 
 
-- Let us investigate:
+- Let's delve into the investigation and examine the details of this incident.
 
-![vivaldi_K8gJz7V9DX](https://user-images.githubusercontent.com/109401839/235294982-8e539741-227f-469d-b3c1-d31454a8d533.png)
+<p align="center">
+<img src="https://i.imgur.com/gnY29zX.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> This is the spiral of despair...
-
-> Let us revise the workbooks since these are relatively new and should reflect on the geolocation map within the timeframe of the attacks. 
+> Considering the recent occurrence of these attacks, it would be appropriate to revise the workbooks to ensure they accurately reflect the geolocation map within the timeframe of the attacks. This will provide us with a more up-to-date and comprehensive understanding of the attack patterns and their geographical origins.
 
 ![vivaldi_sbJlTVzF7M](https://user-images.githubusercontent.com/109401839/235295157-7cba01ca-2c81-4c49-b03d-7cab1c81fb77.png)
 
-> In the last 30 minutes, 
+> In the last 30 minutes: 
 
 ![image](https://user-images.githubusercontent.com/109401839/235295217-06574230-fcb2-408e-b415-428896d83fe9.png)
 
-> The entities show us the IP Address information. 
+> The entities within the workbooks provide us with valuable IP address information. These IP addresses offer insights into the sources of the attacks and assist in identifying the potential origins of malicious activities.
 
-### Attack Traffic Generation Lab
 <details close>
 
 <div>
 
 </summary>
+
+### Attack Traffic Generation
 
 #### Attacker Mode (pretend you are an attacker), perhaps a world-renowned Blackhat Hacker, let us cosplay this lab:
 
