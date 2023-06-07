@@ -323,7 +323,7 @@ By completing these steps, you will have the necessary tools and environment set
 
 - Execute each of the following scripts one by one, carefully observing the outcomes reflected in the Log Analytics Workspace. Additionally, pay attention to the incident creation in Azure Sentinel. This will provide valuable insights into the effects of running these scripts and help you understand how they impact both the log analytics and incident detection components of the system.
 
-- Proceed to run the script named "AAD-Brute-Force-Success-Simulator.ps1." This script simulates a successful brute force attack against Azure Active Directory (AAD). Alternatively, you can manually attempt to log into the Azure portal to mimic the same scenario. By executing this script or performing the login attempts, you will observe the corresponding results in the system.
+- Proceed to run the script named "AAD-Brute-Force-Success-Simulator.ps1". This script simulates a successful brute force attack against Azure Active Directory (AAD). Alternatively, you can manually attempt to log into the Azure portal to mimic the same scenario. By executing this script or performing the login attempts, you will observe the corresponding results in the system.
 
 Now let's analyze the different components of the script to gain a deeper understanding of its functionality. By dissecting the script, we can examine each component and comprehend how they work together to simulate a successful brute force attack.
 
@@ -383,6 +383,34 @@ BruteForceSuccesses
 
 <p align="center">
 <img src="https://i.imgur.com/HvksGSp.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
+
+- Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. Alternatively, we can manually try this by using SSMS and attempting to log in with incorrect credentials.
+
+- Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
+	
+<p align="center">
+<img src="https://i.imgur.com/RZNIfTW.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p	
+	
+> We can now access our Log Analytics platform to review the logs. Please input the following query:	
+	
+```
+// Brute Force Attempt MS SQL Server
+let IpAddress_REGEX_PATTERN = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
+Event
+| where EventLog == "Application"
+| where EventID == 18456
+| where TimeGenerated > ago(1hr)
+| project TimeGenerated, AttackerIP = extract(IpAddress_REGEX_PATTERN, 0, RenderedDescription), DestinationHostName = Computer, RenderedDescription
+| summarize FailureCount = count() by AttackerIP, DestinationHostName
+| where FailureCount >= 10
+```	
+
+> Running this query will produce results that signify a brute force attack on our MS SQL Server. Please be patient as it may take some time for the results to populate, as they rely on the script's execution. Kindly allow sufficient time for the query results to reveal the outcomes of the script execution.
+	
+<p align="center">
+<img src="https://i.imgur.com/L99lx3k.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
 - Key-Vault-Secret-Reader.ps1
