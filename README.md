@@ -385,7 +385,7 @@ BruteForceSuccesses
 <img src="https://i.imgur.com/HvksGSp.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
-- Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. Alternatively, we can manually try this by using SSMS and attempting to log in with incorrect credentials.
+- Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
 
 - Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
 	
@@ -412,6 +412,34 @@ Event
 <p align="center">
 <img src="https://i.imgur.com/L99lx3k.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
+
+- Following that, we will employ the Malware-Generator-EICAR.ps1 script to simulate the creation of malware on our Windows VM. This step is designed to trigger an incident alert, promptly notifying us of a potential malware attack.
+
+> We can execute this in PowerShell ISE, resulting in the creation of a Windows Security Alert. Alternatively, you have the option to create a .txt file and merge the two sections of the script into it. Saving the file will then trigger the desired alert.
+
+To execute the command in PowerShell ISE, follow these steps:
+
+Copy the Malware-Generator-EICAR.ps1 script from our attack scripts folder.
+Paste the script into a new script file.
+Modify the parameter for the total number of viruses to generate. Change it to 10.
+Save the modified script.
+Finally, run the script to initiate the generation of 10 viruses.
+
+<p align="center">
+<img src="https://i.imgur.com/nlzsZsj.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
+
+> The script essentially just combines it for us but we can do this manually 
+
+![mstsc_2zVfAJvwpd](https://user-images.githubusercontent.com/109401839/235332785-38c9111b-b35e-4d8f-afe6-567261c2b45b.png)
+
+> For this part, we will use Powershell ISE (Admin) and enter the .ps1 code. Windows security should catch these. 
+
+![vivaldi_c6nIFdtzdJ](https://user-images.githubusercontent.com/109401839/235333107-b844ca39-112e-4f29-87cd-f470b3cf1ce0.png)
+
+> We should see this generated in Defender For Cloud and Sentinel. In Sentinel, it will only show if Windows Security took action! So, depending on the setting. You have to manually take action if it is quarantined. After that is fixed, take a moment (For me a very long time) and wait for the incident or KQL query to view the incident.
+
+
 
 - Key-Vault-Secret-Reader.ps1
 (this can be done manually by observing Key Vault Secrets in Azure Portal)
@@ -461,22 +489,15 @@ Connect-AzAccount
 
 ![vivaldi_c6nIFdtzdJ](https://user-images.githubusercontent.com/109401839/235333107-b844ca39-112e-4f29-87cd-f470b3cf1ce0.png)
 
-> We should see this generated in Defender For Cloud and Sentinel. In Sentinel, it will only show if Windows Security took action! So, depending on the setting. You have to manually take action if it is quarantined. After that is fixed, take a moment (For me a very long time) and wait for the incident or KQL query to view the incident. 
+> We should see this generated in Defender For Cloud and Sentinel. In Sentinel, it will only show if Windows Security took action! So, depending on the setting. You have to manually take action if it is quarantined. After that is fixed, take a moment (For me a very long time) and wait for the incident or KQL query to view the incident.  
 
-- SQL-Brute-Force-Simulator.ps1
-(this can be done manually with SSMS by attempting to log in with bad credentials)
-
-
-``` Note: It does take a bit of time for the logs to show up in Log Analytics Workspace! "Patience is beautiful." ```
-
-- If you want to trigger Brute Force attempts for Linux and RDP, simply fail to log into these several times (10+), but I assume the internet is doing a good job of that already based on our previous lab, haha. 
-
-### Run Insecure Environment for 24 Hours and Capture Analytics
 <details close>
 
 <div>
 
 </summary>
+
+### Run Insecure Environment for 24 Hours and Capture Analytics
 
 ### Dataset 
 
