@@ -385,9 +385,9 @@ BruteForceSuccesses
 <img src="https://i.imgur.com/HvksGSp.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
-- Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
+-Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
 
-- Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
+-Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
 	
 <p align="center">
 <img src="https://i.imgur.com/RZNIfTW.png" height="70%" width="70%" alt="Azure Free Account"/> 
@@ -419,27 +419,39 @@ Event
 
 To execute the command in PowerShell ISE, follow these steps:
 
-Copy the Malware-Generator-EICAR.ps1 script from our attack scripts folder.
-Paste the script into a new script file.
-Modify the parameter for the total number of viruses to generate. Change it to 10.
-Save the modified script.
-Finally, run the script to initiate the generation of 10 viruses.
+1. Copy the Malware-Generator-EICAR.ps1 script from our attack scripts folder.
+2. Paste the script into a new script file.
+3. Modify the parameter for the total number of viruses to generate. Change it to 10.
+4. Save the modified script.
+5. Finally, run the script to initiate the generation of 10 viruses.
+
+> The script conveniently automates the process for us, but we also have the option to manually perform these steps individually.
 
 <p align="center">
 <img src="https://i.imgur.com/nlzsZsj.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
-> The script essentially just combines it for us but we can do this manually 
+- To manually initiate the generation of malware, follow these steps:
 
-![mstsc_2zVfAJvwpd](https://user-images.githubusercontent.com/109401839/235332785-38c9111b-b35e-4d8f-afe6-567261c2b45b.png)
+1. Open a new Notepad document.
+2. Copy and paste the first and second half of the script side by side into the Notepad document.
+3. Save the file as "EICAR" to the desktop or any desired location.
 
-> For this part, we will use Powershell ISE (Admin) and enter the .ps1 code. Windows security should catch these. 
+<p align="center">
+<img src="https://i.imgur.com/JDwprcz.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-![vivaldi_c6nIFdtzdJ](https://user-images.githubusercontent.com/109401839/235333107-b844ca39-112e-4f29-87cd-f470b3cf1ce0.png)
+- It appears that we have received an alert from Windows Security indicating the necessity to configure ransomware protection.
 
-> We should see this generated in Defender For Cloud and Sentinel. In Sentinel, it will only show if Windows Security took action! So, depending on the setting. You have to manually take action if it is quarantined. After that is fixed, take a moment (For me a very long time) and wait for the incident or KQL query to view the incident.
+<p align="center">
+<img src="https://i.imgur.com/BNQtVOg.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
+- We should observe the generated malware in both Defender for Cloud and Sentinel. In Sentinel, the detection will only appear if Windows Security has taken action, depending on the configured settings. If the malware is quarantined, you will need to manually take action to resolve it. Following that, please allow some time (which could be quite lengthy) and wait for the incident or use a KQL query to view the details of the incident.
 
+<p align="center">
+<img src="https://i.imgur.com/zo2Tu7K.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
 - Key-Vault-Secret-Reader.ps1
 (this can be done manually by observing Key Vault Secrets in Azure Portal)
@@ -472,24 +484,7 @@ Connect-AzAccount
 
 > Here is the alert. 
 
-![vivaldi_msbQ1nQ0D3](https://user-images.githubusercontent.com/109401839/235332230-ad1f9593-4753-4640-bdf7-da33b76f7978.png)
-
-- Malware-Generator-EICAR.ps1
-(this can be done manually by creating a text file with the EICAR string in it)
-
-> Run this in Powershell and it will create a Windows Security Alert. Alternatively, you can make a .txt file and combine the two parts of the script and save it to trigger the alert. 
-
-![mstsc_UnFJHU7CGl](https://user-images.githubusercontent.com/109401839/235332812-697bc84c-5e57-4992-b362-d5a4ddfba704.png)
-
-> The script essentially just combines it for us but we can do this manually 
-
-![mstsc_2zVfAJvwpd](https://user-images.githubusercontent.com/109401839/235332785-38c9111b-b35e-4d8f-afe6-567261c2b45b.png)
-
-> For this part, we will use Powershell ISE (Admin) and enter the .ps1 code. Windows security should catch these. 
-
-![vivaldi_c6nIFdtzdJ](https://user-images.githubusercontent.com/109401839/235333107-b844ca39-112e-4f29-87cd-f470b3cf1ce0.png)
-
-> We should see this generated in Defender For Cloud and Sentinel. In Sentinel, it will only show if Windows Security took action! So, depending on the setting. You have to manually take action if it is quarantined. After that is fixed, take a moment (For me a very long time) and wait for the incident or KQL query to view the incident.  
+![vivaldi_msbQ1nQ0D3](https://user-images.githubusercontent.com/109401839/235332230-ad1f9593-4753-4640-bdf7-da33b76f7978.png)  
 
 <details close>
 
