@@ -561,7 +561,7 @@ NSG Inbound Malicious Flows Blocked	"AzureNetworkAnalytics_CL
 
 </summary>
 
-- We will now proceed with the incidents being generated in Azure Sentinel, following the NIST 800-61 Incident Management Lifecycle. Please utilize the provided Playbook. As you handle each incident, it is advisable to take notes after completing each step for documentation purposes.
+- We will now proceed with the incidents being generated in Azure Sentinel, following the NIST 800-61 Incident Management Lifecycle. Please utilize the provided [Playbook](https://docs.google.com/document/d/1EQ5MzN95POLaRIMulYg3PIH3UGHtDNcGdkFvgOXyEXQ/edit). As you handle each incident, it is advisable to take notes after completing each step for documentation purposes.
 
 - Step 1: Preparation
 (We have already completed this step by ingesting all logs into the Log Analytics Workspace and Sentinel, as well as configuring alert rules.)
