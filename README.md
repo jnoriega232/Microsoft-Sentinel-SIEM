@@ -476,16 +476,14 @@ To execute the command in PowerShell ISE, follow these steps:
 </p
 
 - As is customary, kindly allow some time for the logs to populate in the Log Analytics Workspace. Once the logs start appearing, we can anticipate the subsequent creation of an incident in Sentinel, triggered by the simulated attack involving host firewall tampering.
-
 <p align="center">
 <img src="https://i.imgur.com/9mJMNxB.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p  
+</p
 
 <details close>
 
-<div>
-
-</summary>
+<details>
+  <summary>Details</summary>
 
 ### Run Insecure Environment for 24 Hours and Capture Analytics
 
