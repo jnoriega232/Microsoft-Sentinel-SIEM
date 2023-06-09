@@ -385,9 +385,9 @@ BruteForceSuccesses
 <img src="https://i.imgur.com/HvksGSp.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
-- Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
+-Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
 
-- Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
+-Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
 	
 <p align="center">
 <img src="https://i.imgur.com/RZNIfTW.png" height="70%" width="70%" alt="Azure Free Account"/> 
@@ -453,38 +453,33 @@ To execute the command in PowerShell ISE, follow these steps:
 <img src="https://i.imgur.com/zo2Tu7K.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
-- Key-Vault-Secret-Reader.ps1
-(this can be done manually by observing Key Vault Secrets in Azure Portal)
- 
-> Replace the name for each part of the script with your corresponding information. Run it and see the alert generate! Now you have an idea, I will just show you the results for the next two.  
+- Subsequently, we will manually access the Azure portal to read the key vault secret named "Tenant-Global-Admin-Password." This action simulates a potential privilege escalation attack. Merely viewing the secret within the key vault should trigger an alert and generate an incident in Sentinel.
 
-![mstsc_X219qf3iEc](https://user-images.githubusercontent.com/109401839/235331049-2d9d46c5-47fa-4c5d-b88e-8723a75573db.png)
+> To accomplish this, navigate to the Azure portal. Proceed to the Key Vault section and access the Secrets tab. Locate and select the "Tenant-Global-Admin-Password" secret. Choose the current version and then click on "Show Secret Value" to reveal the contents.
 
-![mstsc_GVrwLTrcuz](https://user-images.githubusercontent.com/109401839/235331078-43392219-7009-49dc-8051-e1754fe3b8c4.png)
+<p align="center">
+<img src="https://i.imgur.com/I7YFZwc.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> This may disconnect you in Azure. This is the Admin attempt. 
- If you are having issues, be sure in lines 6 & 7 to add 
+- After an adequate amount of time has elapsed, we can proceed to the Log Analytics Workspace to examine the logs and identify any alerts that have been generated. Once our query starts returning results indicating a potential privilege escalation attack, we should anticipate the creation of an incident in Sentinel.
 
-```
-Disconnect-AzAccount
-Connect-AzAccount
-``` 
+<p align="center">
+<img src="https://i.imgur.com/TMGhth9.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-> That solved the issue for me there. Now sign in, and remember that the attacker roles set in previous labs do not have read rights for Azure Key vault... 
+- We will now simulate an attack by manually toggling the Windows VM firewall, enabling and disabling it, and closely monitoring the resulting incidents.
 
-> Next is to stop the VM in Azure, this may or may not sign you out, then run it again so everything can marinate perfectly in our pot. Run the.PS1 Key Vault attack again and voila. 
+> To proceed, we will first log into our Windows VM. Then, we will navigate to the Windows machine firewall by searching for "wf.msc". Once there, we will access the "Windows Defender Firewall Properties" and carefully review each tab, including the Domain Profile, Private Profile, and Public Profile. For each profile, we will enable the Firewall state and subsequently disable it to simulate the manipulation of firewall settings.
 
-![mstsc_j9qsWIkbGY](https://user-images.githubusercontent.com/109401839/235331907-8028047d-c4f6-4c2f-9a76-0299cd2e1189.png)
+<p align="center">
+<img src="https://i.imgur.com/et1fSTW.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-![keyvauilt log](https://user-images.githubusercontent.com/109401839/235332071-a6d51d5f-f62a-4022-8f26-a5b408fa6b26.PNG)
+- As is customary, kindly allow some time for the logs to populate in the Log Analytics Workspace. Once the logs start appearing, we can anticipate the subsequent creation of an incident in Sentinel, triggered by the simulated attack involving host firewall tampering.
 
-> Above we can see that our attempt is successful, and we know it is us by the same IP Address of the VM. For my instance, I was the only one who got into the Key Vault, maybe an outside threat got into yours. You can check the logs and verify, however, we should have an incident alert for all these attempts I did. 
- 
-![vivaldi_VozPgPs7jQ](https://user-images.githubusercontent.com/109401839/235332143-d88c13a6-97d9-4461-bbed-0fd14fb19aa9.png)
-
-> Here is the alert. 
-
-![vivaldi_msbQ1nQ0D3](https://user-images.githubusercontent.com/109401839/235332230-ad1f9593-4753-4640-bdf7-da33b76f7978.png)  
+<p align="center">
+<img src="https://i.imgur.com/9mJMNxB.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p  
 
 <details close>
 
