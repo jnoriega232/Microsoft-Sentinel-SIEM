@@ -494,11 +494,11 @@ Before 24 Hours:
 
 | Metric                   | Count
 | ------------------------ | -----
-| SecurityEvent            | 39046
-| Syslog                   | 782
-| SecurityAlert            | 0
-| SecurityIncident         | 222
-| AzureNetworkAnalytics_CL | 1350
+| SecurityEvent            | 23146
+| Syslog                   | 2123
+| SecurityAlert            | 10
+| SecurityIncident         | 267
+| NSG Inbound Malicious Flows Allowed | 865
 
 ![Windows RDP   SMB Authentication Failure(Before)](https://user-images.githubusercontent.com/109401839/235335964-ef063912-f0b7-4761-a95b-911c21f240b7.png)
 
@@ -561,36 +561,34 @@ NSG Inbound Malicious Flows Blocked	"AzureNetworkAnalytics_CL
 
 </summary>
 
-| Check your Subscription’s Cost Analysis
-
-As you work an incident, I would recommend taking notes between each step.
-
- - Work the incidents being generated within Azure Sentinel, in accordance with the NIST 800-61 Incident Management Lifecycle. Make use of the provided Pl.
+- We will now proceed with the incidents being generated in Azure Sentinel, following the NIST 800-61 Incident Management Lifecycle. Please utilize the provided Playbook. As you handle each incident, it is advisable to take notes after completing each step for documentation purposes.
 
 - Step 1: Preparation
-(We initiated this already by ingesting all of the logs into Log Analytics Workspace and Sentinel and configuring alert rules)
+(We have already completed this step by ingesting all logs into the Log Analytics Workspace and Sentinel, as well as configuring alert rules.)
 
 - Step 2: Detection & Analysis (You may have different alerts/incidents)
-Set Severity, Status, Owner
-View Full Details (New Experience)
-Observe the Activity Log (for history of incident)
-Observe Entities and Incident Timelines (are they doing anything else?)
-“Investigate” the incident and continue trying to determine the scope
-Inspect the entities and see if there are any related events
-Determine legitimacy of the incident (True Positive, False Positive, etc.)
-If True Positive, continue, if False positive, close it out.
+
+1. Set Severity, Status, and Owner for the incident.
+2. View Full Details using the New Experience interface.
+3. Review the Activity Log to understand the incident's history.
+4. Analyze Entities and Incident Timelines to check for any additional suspicious activities.
+5. "Investigate" the incident to determine its scope.
+6. Inspect the entities involved and search for related events.
+7. Evaluate the legitimacy of the incident (True Positive, False Positive, etc.).
+8. If it is a True Positive, continue with the next steps. If it is a False Positive, close the incident.
 
 - Step 3: Containment, Eradication, and Recovery
-Use the simple Incident Response PlayBook
+Follow the steps outlined in the simple Incident Response PlayBook to contain, eradicate, and recover from the incident.
 
-- Step 4: Document Findings/Info and Close out the Incident in Sentinel
+- Step 4: Document Findings/Information and Close the Incident in Sentinel.
 
-Incident 1 - Brute Force Success (Windows) - Working Incidents and Incident Response
 <details close>
 
 <div>
 
 </summary>
+
+Incident 1 - Brute Force Success (Windows) - Working Incidents and Incident Response
 
 - Set Severity, Status, Owner
 
