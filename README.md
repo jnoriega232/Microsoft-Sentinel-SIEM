@@ -626,9 +626,9 @@ Incident 1 - Brute Force Success (Windows) - Working Incidents and Incident Resp
 <img src="https://i.imgur.com/l9aNh87.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
--  In case we come across related alerts associated with this attacker, we can explore the correlation between their IP address and other activities. It appears that they are connected to 80 other events, and further investigation into these events may provide valuable insights. 
+-In case we come across related alerts associated with this attacker, we can explore the correlation between their IP address and other activities. It appears that they are connected to 80 other events, and further investigation into these events may provide valuable insights. 
 
--  This attacker is associated with 6 attempted Brute Force Attacks and has successfully executed over 13 Brute Force Attacks.
+-This attacker is associated with 6 attempted Brute Force Attacks and has successfully executed over 13 Brute Force Attacks.
 
  <p align="center">
 <img src="https://i.imgur.com/NulWczg.png" height="70%" width="70%" alt="Azure Free Account"/> 
