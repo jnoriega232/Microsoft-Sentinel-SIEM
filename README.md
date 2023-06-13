@@ -637,11 +637,13 @@ Incident 1 - Brute Force Success (Windows) - Working Incidents and Incident Resp
 <img src="https://i.imgur.com/64nxWCr.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p>
 
-- We can see more data in view "All Aggregated Nodes" in KQL
+- To access more data, navigate to the "All Aggregated Nodes" view in KQL (Kusto Query Language). This will provide a broader perspective and enable you to explore additional information and insights.
 
-![vivaldi_V7drXD6QZu](https://user-images.githubusercontent.com/109401839/235336905-1323b6df-4223-4b45-a59b-755220a9de9e.png)
-
-We can see this information in KQL. 
+<p align="center">
+<img src="https://i.imgur.com/DQJIVZa.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
+	
+- This information can be viewed and analyzed using KQL (Kusto Query Language). 
 
 ```
 let GetIPRelatedAlerts = (v_IP_Address: string) {
@@ -653,13 +655,20 @@ let GetIPRelatedAlerts = (v_IP_Address: string) {
     | where entity['Type'] == 'ip' and entity['Address'] =~ v_IP_Address
     | project-away entity
 };
-GetIPRelatedAlerts(@'110.167.169.106')
+GetIPRelatedAlerts(@'174.65.157.233')
 ```
 
-- Now Determine the legitimacy of the incident, True Postive or False Positive, etc. 
+- Additionally, we can observe that our "windows-vm" appears to be a likely compromised system, given its involvement in an additional 230 incidents/alerts. This indicates a significant level of suspicious activity and raises concerns about the compromised state of the system.
+
+<p align="center">
+<img src="https://i.imgur.com/U87NFAb.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
+
+- Now, it is crucial to determine the legitimacy of the incident, classifying it as either a True Positive (genuine security issue) or a False Positive (a benign or erroneous event). Assessing the incident's validity will help guide further actions and response strategies.
+
+- To aid in determining the legitimacy of the incident, we can utilize the analytics rule to delve deeper into the attacker's activities. By doing so, we can gather more comprehensive insights into their actions, thereby enabling us to uncover additional information and potentially identify any other nefarious activities they may be involved in.
 
 ```
-
 // Brute Force Success Windows
 let FailedLogons = SecurityEvent
 | where EventID == 4625 and LogonType == 3
@@ -673,45 +682,45 @@ let SuccessfulLogons = SecurityEvent
 SuccessfulLogons
 | join kind = leftouter FailedLogons on DestinationHostName, AttackerIP, LogonType
 | project AuthenticationSuccessTime, AttackerIP, DestinationHostName, FailureCount, SuccessfulCount
-
 ```
-Via [Cheat Sheet](https://github.com/fnabeel/Cloud-SOC-Project-Directory/blob/main/KQL-Query-Cheat-Sheet%20(1).md) 
+Via [Cheat Sheet](https://github.com/joshmadakor1/Cyber-Course/blob/main/KQL-Query-Cheat-Sheet.md) 
 
-> We will add a clause to see entities that have had successful log ons in the last 24 hours. 
+- To refine our analysis, we will add a clause to identify entities that have had successful logins within the last 24 hours or within any desired timeframe. This will enable us to focus on the entities that have experienced recent successful login activities and help us uncover any potential security threats associated with them.
 
 ```
 SecurityEvent
-| where EventID == 4625
+| where EventID == 4624
 | distinct Account
 ``` 
-![vivaldi_dnJSoEyZme](https://user-images.githubusercontent.com/109401839/235337183-cde0f5f1-eec4-4631-b597-6970c06b9a25.png)
 
-We can further specify by using the IP Address of the attacker. 
+<p align="center">
+<img src="https://i.imgur.com/Bk0XpLZ.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
+
+- To further refine our analysis, we can narrow down our focus by utilizing the IP address of the attacker. This will allow us to gather more specific and targeted information about the activities associated with that particular IP address, aiding us in better understanding the nature and extent of the attack.
 
 ```
-| where ipaddress == "110.167.169.106"
+| where ipaddress == "174.65.157.233"
 ```
 
 and remove: 
 
 ``` | distinct Account ```
 
-![vivaldi_JRZZok9EsC](https://user-images.githubusercontent.com/109401839/235337271-a832ca24-7dbd-443c-a2f6-70df71664de2.png)
+<p align="center">
+<img src="https://i.imgur.com/g9IXS5d.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-Based on the results, I willl conclude this to be a False Positive. 
+- Based on the findings, I have reached the conclusion that this incident is a False Positive. Allow me to explain why. Despite the recorded "successful" attempts, further analysis reveals that the attacker persisted in their brute force attempts without achieving any actual successful login. Upon inspecting the action from the identified IP address, it becomes apparent that the main concern lies in the persistent nature of this threat actor. Given enough time, they could potentially breach the system.
 
-You maybe wondering why? 
-It is because even after these "successful" attempts, we can see they kept trying to bruteforce in. In addition, if we filter the activity, there is not any actual successful login attempts. We inspected the action from this IP Address, and the main issue is the persistence of this Threat Actor. With enough time, they could breach into the system.
+- In accordance with the incident management process, we would typically proceed if the incident were a true positive. However, since it is a false positive in this case, we will close it out. Nonetheless, it is crucial to acknowledge that the network security posture is inadequate. As a result, we will address this issue by prioritizing the hardening of our systems to significantly reduce the likelihood of such incidents in the future. 
 
--   If true positive, continue. If false-positive, close. 
+<p align="center">
+<img src="https://i.imgur.com/uqAAOQ5.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-Since it is a false positive, but the network security is bad. We will close this out but continue this by hardening our systems so this sort of incident is reduced greatly. 
+- Next, we will move on to the phase of Containment, Eradication, and Recovery. To guide us through this process, let's refer to the Incident Response Playbook. This playbook outlines the recommended steps and actions to be taken to contain the incident, eliminate any threats, and restore the affected systems to a secure state. Following the playbook will help ensure an effective and coordinated response to the incident.
 
-Next:  Containment, Eradication, and Recovery.
-
-Let us refer to the Incident Response Playbook. 
-
-" 
 ### Incident Description
 <div>
 This incident involves observation of potential brute force attempts against a Windows VM.
@@ -742,20 +751,18 @@ Are the NSGs not being locked down? If so, check other NSGs
 - Enable MFA
 
 ### Document Findings and Close out Incident
-"
 
- ![hardening ip](https://user-images.githubusercontent.com/109401839/235338083-2806e873-8855-464d-8ec0-fb7706bd1508.PNG)
+<p align="center">
+<img src="https://i.imgur.com/3OUfoDF.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-So we will make the only IP address that can access this VM is our own + /32 <- which means only the specified IP Address.
+- As part of the containment measures, we will restrict access to the VM by allowing only our specified IP address to connect. This can be achieved by configuring the firewall rules to permit incoming connections exclusively from our IP address and specifying the subnet mask as /32, which restricts access to only that specific IP address. By implementing this restriction, we can minimize the risk of unauthorized access to the VM and strengthen its security.
 
-![vivaldi_CoLvEd6nF3](https://user-images.githubusercontent.com/109401839/235338143-bf9b40b1-79ee-460a-94a7-bc177e2d48d2.png)
+<p align="center">
+<img src="https://i.imgur.com/lawDyVC.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-We can delete this RDP rule from earlier labs. 
-
-So now there is not a chance they can brute force.
-
-We will do this for all out VM. 
-
+- To bolster security measures across all our VMs, we will proceed with removing the unrestricted RDP (Remote Desktop Protocol) rule that was previously configured. This deliberate action is essential in eliminating any potential vulnerabilities that could be exploited through brute force attacks targeting the RDP service. By uniformly removing this rule from all our VMs, we significantly reduce the attack surface and reinforce the overall security posture of our systems. This proactive approach is crucial for mitigating the risk of unauthorized access and ensuring a robust defense against potential threats.
 
 ### Incident 2 - Possible Privilege Escalation - Working Incidents and Incident Response
 <details close>
