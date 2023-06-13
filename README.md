@@ -590,39 +590,54 @@ Follow the steps outlined in the simple Incident Response PlayBook to contain, e
 
 Incident 1 - Brute Force Success (Windows) - Working Incidents and Incident Response
 
-- Set Severity, Status, Owner
+- We will initiate the response to the Brute Force Success incident on our Windows VM by first establishing the severity level, updating the status, and assigning an owner.
 
-![vivaldi_cuZM38TCe3](https://user-images.githubusercontent.com/109401839/235336573-c38e5325-e4df-4aad-93f8-b04487099a32.png)
+<p align="center">
+<img src="https://i.imgur.com/Tn8sOsl.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- View Full Details (New Experience)
+- Next, we will proceed to examine the full details of the incident. Please navigate to the incident details using the new experience interface.
 
-![c5qFJgKgq8](https://user-images.githubusercontent.com/109401839/235336592-2ec5579f-aa33-42f3-9e80-ce549f1b5da6.png)
+<p align="center">
+<img src="https://i.imgur.com/JmZedRE.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- Observe the Activity Log (for history of incident)
+- Now, let us proceed with observing the Activity Log to review the incident's history and gain a comprehensive understanding of the events that have occurred.
 
-![vivaldi_8f1Oj6rUd5](https://user-images.githubusercontent.com/109401839/235336637-50bf9a05-b3a5-4266-b009-866991f902de.png)
+<p align="center">
+<img src="https://i.imgur.com/SOD2sXl.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- Observe Entities and Incident Timelines
+- Next, we will shift our attention to observing the Entities and Incident Timelines. This will allow us to determine if the entities involved in the incident are associated with any other attacks or suspicious activities.
 
-![vivaldi_OEaYg3xMGs](https://user-images.githubusercontent.com/109401839/235336701-eca2ef8d-4302-45df-952d-c92d167f082c.png)
+<p align="center">
+<img src="https://i.imgur.com/CGVqNXT.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-If we click this IP Address, we can see their Geo Data. 
+- By clicking on the IP Address, we can access the corresponding Geo Data and gain insights into the geographic location associated with the IP. 
 
-![vivaldi_iL5aNXLtVZ](https://user-images.githubusercontent.com/109401839/235336728-c55a52dc-df04-43ac-ab5f-e22bf65265d8.png)
+<p align="center">
+<img src="https://i.imgur.com/yGe40wf.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-- Investigate & Determine The Scope
+- Proceed with the investigation of the incident, persistently working to determine its scope and extent.
 
-![vivaldi_KhX7Mked3T](https://user-images.githubusercontent.com/109401839/235336764-4da5f6ad-5274-4c32-978d-ca5697cb52b2.png)
+<p align="center">
+<img src="https://i.imgur.com/l9aNh87.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p
 
-If we see related alerts based on this attacker we can see what else they have done in correlation to their IP Address. They are related to 41 other events. 
+-  In case we come across related alerts associated with this attacker, we can explore the correlation between their IP address and other activities. It appears that they are connected to 80 other events, and further investigation into these events may provide valuable insights. 
 
-This attacker is related to +26 attempted Brute Force Attacks and over 14 successful Brute Force Attacks. 
+-  This attacker is associated with 6 attempted Brute Force Attacks and has successfully executed over 13 Brute Force Attacks.
 
-![vivaldi_R4miIRFQH2](https://user-images.githubusercontent.com/109401839/235336831-6618b357-320c-4702-918a-7c9f4bbe5ad0.png)
+ <p align="center">
+<img src="https://i.imgur.com/NulWczg.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
+<p align="center">
+<img src="https://i.imgur.com/64nxWCr.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-![vivaldi_jzhkTzBq9b](https://user-images.githubusercontent.com/109401839/235336876-f16e6504-adf3-4360-8689-7babb4df3b5e.png)
-
-We can see mroe data if view "All Aggregated Nodes" in KQL
+- We can see more data in view "All Aggregated Nodes" in KQL
 
 ![vivaldi_V7drXD6QZu](https://user-images.githubusercontent.com/109401839/235336905-1323b6df-4223-4b45-a59b-755220a9de9e.png)
 
