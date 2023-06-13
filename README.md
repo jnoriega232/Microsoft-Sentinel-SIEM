@@ -803,42 +803,47 @@ Are the NSGs not being locked down? If so, check other NSGs
 
 ### Incident 3 - Brute Force Success (Linux) - Microsoft Sentinel Working Incidents and Incident Response
 
-In my lab, I did not have any successful Linux brute force, but we do have attempts. 
+- During my lab testing, I did not observe any successful Linux brute force attacks by individuals other than myself, which was intentionally conducted for demonstration purposes. However, there were numerous attempts made to breach the system by simulated attackers. These attempts highlight the importance of implementing robust security measures to protect against potential unauthorized access and reinforce the need for proactive security practices within our Linux environment. 
 
-![vivaldi_mEYswyeMRa](https://user-images.githubusercontent.com/109401839/235338903-0c6a9c81-82ea-4838-96d3-f6dfb699aa1f.png)
+<p align="center">
+<img src="https://i.imgur.com/ebaCZpY.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-![vivaldi_aRwcdARuEr](https://user-images.githubusercontent.com/109401839/235338914-a1daed59-f86f-4106-882e-fd8d22626e16.png)
+<p align="center">
+<img src="https://i.imgur.com/uIXj9yu.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
+	
+- To perform thorough due diligence and confirm if any successful brute force attacks occurred, we can utilize the following KQL query:
 
-![vivaldi_eKo6RDjcN3](https://user-images.githubusercontent.com/109401839/235338939-aabf588d-120c-410e-b21d-eba1e47ad97b.png)
+<p align="center">
+<img src="https://i.imgur.com/RllNw5K.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-We can use this KQL query to confirm if they actually Brute Force in or not to do our due diligence. 
+- To summarize, we can close this incident as a Benign-True Positive since there were no successful brute force attacks detected. However, to gather more detailed information, we can customize the query by examining each IP address individually. This level of granularity is useful when dealing with a larger-scale scenario, such as when thousands of IP addresses within an organization are attempting brute force attacks, and we want to focus on a specific IP address.
 
-![vivaldi_oWXidzLFP1](https://user-images.githubusercontent.com/109401839/235338986-b81f3604-1aaf-4534-aaf6-357e6b638bb8.png)
+- Additionally, as a proactive measure, we can reset the passwords associated with the affected accounts. By doing so, we further mitigate the risk of unauthorized access and ensure the security of our systems.
 
-We did not, we can close this as a Benign- True Positive because there was an attempt, no successful brute forces. We can specify further by grabbing each IP Address and customising the query. First lets get more info. 
+<p align="center">
+<img src="https://i.imgur.com/fOBm9AH.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-This would be good for example, 10,000 IP Addresses in an organisation was attempting to brute force and we wanted to narrow it down to just 1 IP. 
+- To summarize, following the playbook, we investigated if the incident was related to any other events. It was discovered that the compromised user virtual machine and the associated network security group (NSG) were indeed involved in other incidents. To remediate the situation, we took immediate action by resetting the password of the compromised user virtual machine and implementing tighter restrictions on the NSG.
 
-We can reset the passwords. 
+- Based on these actions and the absence of further malicious activities, we can confidently close this incident as a Benign-True Positive. The necessary steps have been taken to mitigate the risk and ensure the security of our systems. Incident closed.
 
-![vivaldi_tQnuejPL1A](https://user-images.githubusercontent.com/109401839/235339178-8710f60a-838c-4773-b271-49038fb9bae3.png)
+- Considering the impact of the incident, it was observed that the compromised account belonged to a non-administrative user on a Linux virtual machine. This indicates a potentially low impact. However, it is important to note that the attacker is involved in numerous other incidents, which raises concerns about the overall security posture.
 
-- Refering to the playbook, lets see if they are related to any other event. 
+- To address this, we will focus on remediating the situation by implementing NSG hardening measures. By strengthening the network security group configurations, we aim to prevent any further unauthorized access attempts and mitigate the risk posed by the attacker.
 
-> They are, we remediated this by reseting password of compromsied user viritual machine and locked down NSG. 
+- By taking these steps, we are proactively addressing the incident and working towards enhancing the security of our systems.
 
-Now we can close it as a Benign- True Positive. Closed.
-
-- Impact of Incident
-
-> Account was a non admin account on a linux virtual machine, possibly low impact, however attacker is invovled in many other incidents. These wil be remediated by NSG hardening. 
-
-### Incident 4 - Possible Malware Outbreak - Working Incidents and Incident Response
 <details close>
 
 <div>
 
 </summary>
+
+### Incident 4 - Possible Malware Outbreak - Working Incidents and Incident Response
 
 ![vivaldi_cmkHl8ibDk](https://user-images.githubusercontent.com/109401839/235339661-ed54b589-0d13-440e-9f8d-d1901c8076dd.png)
 
