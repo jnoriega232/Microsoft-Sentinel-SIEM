@@ -759,7 +759,7 @@ Are the NSGs not being locked down? If so, check other NSGs
 - As part of the containment measures, we will restrict access to the VM by allowing only our specified IP address to connect. This can be achieved by configuring the firewall rules to permit incoming connections exclusively from our IP address and specifying the subnet mask as /32, which restricts access to only that specific IP address. By implementing this restriction, we can minimize the risk of unauthorized access to the VM and strengthen its security.
 
 <p align="center">
-<img src="https://i.imgur.com/lawDyVC.png" height="70%" width="70%" alt="Azure Free Account"/> 
+<img src="https://i.imgur.com/4on9DG9.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p>
 
 - To bolster security measures across all our VMs, we will proceed with removing the unrestricted RDP (Remote Desktop Protocol) rule that was previously configured. This deliberate action is essential in eliminating any potential vulnerabilities that could be exploited through brute force attacks targeting the RDP service. By uniformly removing this rule from all our VMs, we significantly reduce the attack surface and reinforce the overall security posture of our systems. This proactive approach is crucial for mitigating the risk of unauthorized access and ensuring a robust defense against potential threats.
