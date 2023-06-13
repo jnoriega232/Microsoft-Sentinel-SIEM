@@ -771,30 +771,37 @@ Are the NSGs not being locked down? If so, check other NSGs
 
 </summary>
 
-We will do the samething again. 
+- Next, we will repeat the same process for the next incident, which involves a suspected privilege escalation attack. This incident requires our attention to follow the established incident management lifecycle and execute the necessary steps to contain, eradicate, and recover from the potential threat. By applying the Incident Response Playbook and leveraging our knowledge and experience, we can effectively address this incident and mitigate any potential risks associated with privilege escalation. Let's proceed with the necessary actions to ensure the security and integrity of our systems.
 
-![possible esdc](https://user-images.githubusercontent.com/109401839/235338529-973af8de-1de3-4dec-b6db-ca0c81d30ce0.PNG)
+<p align="center">
+<img src="https://i.imgur.com/BeuXzfD.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-This has 525 Events and 25 alerts.
+- This incident has been associated with a total of 120 events and triggered 30 alerts.
 
-This was from our Powershell script I left running. We know it is a false positive since it came from my virtual machine by the matching IP address. However, if this is a real incident. We have to investigate something that is generating so many alerts. 
+- Based on our investigation, we have determined that the incident was caused by the PowerShell script that I had left running on my virtual machine. Considering the matching IP address, we can conclude that this is a false positive. However, it is crucial to note that if this were a genuine incident, we would need to investigate the source generating such a high number of alerts. Such a scenario warrants thorough analysis to identify the underlying cause and ensure that any potential security risks are addressed promptly. While we can dismiss this particular incident as a false positive, it emphasizes the importance of investigating and addressing any real incidents that generate a significant number of alerts.
 
-![vivaldi_H4U6CQUlEx](https://user-images.githubusercontent.com/109401839/235338626-7d6c3450-24c8-4821-90e3-5b2e2dbefc27.png)
+<p align="center">
+<img src="https://i.imgur.com/m7Qbc12.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-Since this is within the organisation, I would just call the user and confirm the details with them. Lets pretend the user was just doing normal duties is a pentester, and corobrated with their manager to conduct this. Then we can just close it. False Positive - Inaccurate Data. 
+- Since this incident occurred within our organization, it would be prudent to directly reach out to the user involved and confirm the details with them. In this scenario, let's assume that the user was simply performing their normal duties as a pentester and had obtained proper authorization from their manager to conduct the activities in question. By contacting the user and corroborating the incident details, we can validate that it was an authorized and expected activity. Consequently, we can confidently classify this incident as a false positive, resulting from inaccurate data or misinterpretation of the situation. We will proceed to close the incident, ensuring that it is properly documented for future reference and analysis.
 
-![vivaldi_FTRBwqoRdM](https://user-images.githubusercontent.com/109401839/235338746-d2c7a33f-d1ac-4cd0-ac3d-6b032e2445cc.png)
+<p align="center">
+<img src="https://i.imgur.com/5l1TvXA.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-So far I closed 3 Incidents, 1 Brute Force, 1 Permission Escalating , 1 Duplicate of the Brute force. 
+- Up to this point, I have successfully closed three incidents: one related to a brute force attack, another involving permission escalation, and a duplicate incident that was identical to the initial brute force attack. By following the incident management process, including thorough investigation, analysis, and validation, I was able to determine the appropriate resolution for each incident. Closing these incidents signifies that the necessary actions have been taken to address the identified security concerns, ensuring the protection and integrity of our systems.
 
 ![vivaldi_MjJTET0DBT](https://user-images.githubusercontent.com/109401839/235338870-1c478632-83f8-4777-b593-cb21196276b6.png)
 
-### Incident 3 - Brute Force Success (Linux) - Microsoft Sentinel Working Incidents and Incident Response
 <details close>
 
 <div>
 
 </summary>
+
+### Incident 3 - Brute Force Success (Linux) - Microsoft Sentinel Working Incidents and Incident Response
 
 In my lab, I did not have any successful Linux brute force, but we do have attempts. 
 
