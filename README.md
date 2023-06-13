@@ -385,9 +385,9 @@ BruteForceSuccesses
 <img src="https://i.imgur.com/HvksGSp.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p
 
--   Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
+-Afterward, we will execute the script called "SQL-Brute-Force-Simulator.ps1". This script emulates a brute force attack on our MS SQL Server. As an alternative approach, we can manually attempt this by utilizing SSMS and deliberately logging in with incorrect credentials. To do so, simply make repeated failed login attempts (10 or more).
 
--   Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
+-Throughout the script's execution, it will make numerous authentication and login attempts. However, it's important to note that rapid login attempts might not always be accurately recorded. Hence, to mitigate this issue, we will cap the maximum attempts at 50. In the event of reaching this threshold, an incident alert will be triggered to notify us of a potential security breach.
 	
 <p align="center">
 <img src="https://i.imgur.com/RZNIfTW.png" height="70%" width="70%" alt="Azure Free Account"/> 
