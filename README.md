@@ -863,29 +863,25 @@ Are the NSGs not being locked down? If so, check other NSGs
 
 - We can analyze the query that triggered this alert to gain further insights. 
 
-<p align="center">
-<img src="https://i.imgur.com/eXWqNcC.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p>
+![vivaldi_7ytY4TuYHb](https://user-images.githubusercontent.com/109401839/235339840-376912f2-8e7f-4cf3-a4ee-8bd6ba4fb9a7.png)
 
-- We can apply a filter based on the "Computer" category in KQL to narrow down the results.
+- This can be filtered by the compromised entity category using the following KQL query:
 
-<p align="center">
-<img src="https://i.imgur.com/Y1D5IxO.png" height="70%" width="70%" alt="Azure Free Account"/> 
-</p>
+![vivaldi_ulG9cGZsXz](https://user-images.githubusercontent.com/109401839/235339859-2eb3d7c1-55a5-4a16-b396-1f1a0d405e3e.png)
 
-We can add another query to see if there is no action necessary and if the malware was remediated. 
+- We can add an additional query to check if there is no action necessary and if the malware has been remediated. 
 
 ![vivaldi_7aC88zFKiR](https://user-images.githubusercontent.com/109401839/235339918-c3fdaba0-4dc6-427a-a342-dd469a384561.png)
 
-Which looks like it was automatically remidiated. 
-
-We can do our due diligence and make sure by viewing the the file path. 
+- It appears that the malware has been automatically remediated. To confirm this, we can perform our due diligence by examining the file path associated with the incident. 
 
 ![vivaldi_8tIZy1xL5Q](https://user-images.githubusercontent.com/109401839/235339965-2fd9de11-2b8e-4011-8a8b-47ccd9708971.png)
 
-It is benign true positive. 
+- Upon reviewing the alerts, we observe that each of them contains extended properties that are labeled as "EICAR." This indicates that these alerts are associated with the malware testing we conducted. Therefore, we can conclude that these alerts are false positives, as they were expected during our testing. As a result, we can proceed to close the incident, classifying it as a Benign Positive - Suspicious but expected.
 
-![vivaldi_EPWAjpIU5D](https://user-images.githubusercontent.com/109401839/235340033-f65d3618-a31a-4d8f-810a-3bf5f076cffc.png)
+<p align="center">
+<img src="https://i.imgur.com/3NPUZEp.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
 That is it for the SIEM labs, I will mass close the tickets as Benign Positive - Suspicious but expected. 
 
