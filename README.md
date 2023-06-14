@@ -883,12 +883,14 @@ Are the NSGs not being locked down? If so, check other NSGs
 <img src="https://i.imgur.com/3NPUZEp.png" height="70%" width="70%" alt="Azure Free Account"/> 
 </p>
 
-That is it for the SIEM labs, I will mass close the tickets as Benign Positive - Suspicious but expected. 
+- That concludes the SIEM labs. As a final step, I will proceed to mass close the tickets, classifying them all as Benign Positive - Suspicious but expected. This ensures that the incidents are properly documented and closed in accordance with our findings and analysis. 
 
-![vivaldi_pL3PCdQkUO](https://user-images.githubusercontent.com/109401839/235340122-ae0340b3-58bb-482b-9871-0afb6e7cc5af.png)
+<p align="center">
+<img src="https://i.imgur.com/tPmb1Lu.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-Next part, we will harden the environment after 24 hours and document it. 
+<p align="center">
+<img src="https://i.imgur.com/ZEppg6q.png" height="70%" width="70%" alt="Azure Free Account"/>
+</p>
 
-Now lets wait 24 hours. 
-
-![vivaldi_Vbe3M5A01o](https://user-images.githubusercontent.com/109401839/235340150-0b193cd6-dbb7-4c01-b256-e5fc26c0e267.png)
+- In the next phase, we'll complete the environment hardening, wait 24 hours, document the changes, and compare before-and-after results.
