@@ -845,23 +845,33 @@ Are the NSGs not being locked down? If so, check other NSGs
 
 ### Incident 4 - Possible Malware Outbreak - Working Incidents and Incident Response
 
-![vivaldi_cmkHl8ibDk](https://user-images.githubusercontent.com/109401839/235339661-ed54b589-0d13-440e-9f8d-d1901c8076dd.png)
+- We will now shift our attention to a potential malware outbreak incident within Azure Sentinel.
 
-![vivaldi_iK4n16GqXA](https://user-images.githubusercontent.com/109401839/235339714-28549a49-b758-40a7-badf-cb90fcd73602.png)
+<p align="center">
+<img src="https://i.imgur.com/V9TZq57.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-![vivaldi_2ggFSrbzOX](https://user-images.githubusercontent.com/109401839/235339755-a413874f-da99-4781-a076-3cc49bb7a7d8.png)
+<p align="center">
+<img src="https://i.imgur.com/BqucEcW.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-Here do not know if the extended alerts are actually related to the incident. In thsi case malware, but it can be as typically with a breach, threat actors drop malware in as well. 
+<p align="center">
+<img src="https://i.imgur.com/gcSTSg3.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-> Note: Several other alerts raised. 
+- In this scenario, we are uncertain if the extended alerts are directly linked to the incident, which in this case is a potential malware outbreak. It is worth noting that in many breach situations, threat actors often deploy malware as part of their attack strategy. Additionally, we have observed several other alerts being raised alongside this incident. 
 
-We can examine the query that generated this alert. 
+- We can analyze the query that triggered this alert to gain further insights. 
 
-![vivaldi_ulG9cGZsXz](https://user-images.githubusercontent.com/109401839/235339859-2eb3d7c1-55a5-4a16-b396-1f1a0d405e3e.png)
+<p align="center">
+<img src="https://i.imgur.com/eXWqNcC.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
-This can be filtered by comprised entity category in KQL. 
+- We can apply a filter based on the "Computer" category in KQL to narrow down the results.
 
-![vivaldi_7ytY4TuYHb](https://user-images.githubusercontent.com/109401839/235339840-376912f2-8e7f-4cf3-a4ee-8bd6ba4fb9a7.png)
+<p align="center">
+<img src="https://i.imgur.com/Y1D5IxO.png" height="70%" width="70%" alt="Azure Free Account"/> 
+</p>
 
 We can add another query to see if there is no action necessary and if the malware was remediated. 
 
