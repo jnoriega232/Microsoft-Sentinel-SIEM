@@ -22,7 +22,6 @@
 - VM Windows 10 PRO (21H2)
 - VM Linux Ubuntu 20.12
 
-#### World Attach Maps Constructions
 <details close>
 
 <div>
