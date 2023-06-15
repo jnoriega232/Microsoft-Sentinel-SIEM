@@ -893,4 +893,4 @@ Are the NSGs not being locked down? If so, check other NSGs
 <img src="https://i.imgur.com/ZEppg6q.png" height="70%" width="70%" alt="Azure Free Account"/>
 </p>
 
-- In the next phase, we'll complete the environment hardening, wait 24 hours, document the changes, and compare before-and-after results.
+- In our last set of [labs](https://github.com/jnoriega232/Secure-Cloud-Configuration), we'll complete the environment hardening, wait 24 hours, document the changes, and compare before-and-after results.
