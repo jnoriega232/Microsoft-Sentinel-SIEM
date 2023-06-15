@@ -2,7 +2,7 @@
 
 ## Objectives for the next 8 Labs that will be configuring our security incident event management system.
 
-- World Attach Maps Constructions
+- World Attack Maps Construction
 - Analytics, Alerting, and Incident Generation
 - Attack Traffic Generation
 - Run Insecure Environment for 24 hours and Capture Analytics
@@ -29,9 +29,9 @@
 
 </summary>
 
-
 **Reminder: Check your Subscription’s Cost Analysis**
 
+#### World Attack Maps Construction
 ### Actions and Observations<b>
 
 - In Sentinel, we will develop four distinct workbooks showcasing diverse forms of malicious traffic originating from various global locations, all directed at our resources.
